@@ -1,0 +1,148 @@
+
+Пример GET запроса с параметрами (без проверки токена)
+// swagger:operation GET /rest-user-controller/api/v1/user_list User user_list
+	// ---
+	// summary: Получить список .
+	// produces:
+	// - application/json
+	// parameters:
+	// - name: sort
+	//   in: query
+	//   description: Сортировка по id
+	//   required: false
+	//   type: string
+	//   default: asc
+	//   enum: [asc, desc]
+	// - name: sortFields
+	//   in: query
+	//   description: Поля для сортировки через запятую
+	//   required: false
+	//   type: string
+	//   default: id
+	// - name: filterValues
+	//   in: query
+	//   description: Фильтры по полям
+	//   required: false
+	//   type: array
+	//   items:
+	//     type: string
+	// - name: filterFields
+	//   in: query
+	//   description: Поля для фильтра
+	//   required: false
+	//   type: array
+	//   items:
+	//     type: string
+	// - name: filterType
+	//   in: query
+	//   description: Тип фильтра полное совпадение или совпадение по like
+	//   required: false
+	//   type: string
+	//   default: strong
+	//   enum: [strong, like]
+	// - name: filterLogic
+	//   in: query
+	//   description: Пересечение или дополнение
+	//   required: false
+	//   type: string
+	//   default: and
+	//   enum: [and, or]
+	// - name: page
+	//   in: query
+	//   description: Страница результатов
+	//   default: 0
+	//   required: false
+	//   type: integer
+	//   format: int32
+	// - name: count
+	//   in: query
+	//   description: Количество результатов на странице
+	//   default: 100
+	//   required: false
+	//   type: integer
+	//   format: int32
+	// - name: deleted
+	//   in: query
+	//   description: Показывать удаленные
+	//   default: false
+	//   required: false
+	//   type: boolean
+	// - name: preloads
+	//   in: query
+	//   description: Подзагрузка связей
+	//   type: array
+	//   items:
+	//     enum: ["UserType","UserHRStatus","Documents.Parts.File","Employments.Company","Employments.Department","Employments.Position","CommandMembers","UserSkills","Properties","SocialNetworks","WorkExperiences","UserInfo"]
+	//   required: false
+	// responses:
+	//   '200':
+	//     description: В резельтате выполнения массив сущностей
+	//     schema:
+	//       "$ref": "#/definitions/user_list"
+
+Пример POST запроса с телом (без проверки токена)
+// swagger:operation POST /v1/add_employee Authorization add_employee
+// ---
+// summary: Владелец бизнеса добавляет сотрудника без отправки приглашения сотруднику
+// produces:
+//  - application/json
+// parameters:
+//  - name: body
+//    in: body
+//    description: Пользователь
+//    schema:
+//     $ref: "#/definitions/user"
+// Security:
+// - Bearer:
+// responses:
+//  '200':
+//   description: Пользователь добавлен
+//   schema:
+//    allOf:
+//     - $ref: '#/definitions/http_response'
+//     - type: object
+//       properties:
+//        result:
+//         $ref: '#/definitions/http_response'
+//  '400':
+//   description: Ошибка
+//   schema:
+//    $ref: '#/definitions/http_response'
+
+локальная проверка токена енд-поинта
+// swagger:operation POST /v1/add_employee Authorization add_employee
+// ---
+// summary: Владелец бизнеса добавляет сотрудника без отправки приглашения сотруднику
+// produces:
+//  - application/json
+// parameters:
+//  - name: body
+//    in: body
+//    description: Пользователь
+//    schema:
+//     $ref: "#/definitions/user"
+// Security:
+// - Bearer:
+// responses:
+//  '200':
+//   description: Пользователь добавлен
+//   schema:
+//    allOf:
+//     - $ref: '#/definitions/http_response'
+//     - type: object
+//       properties:
+//        result:
+//         $ref: '#/definitions/http_response'
+//  '400':
+//   description: Ошибка
+//   schema:
+//    $ref: '#/definitions/http_response'
+
+	//swagger:model candidate_list
+    type CandidateList struct {
+    	// example: 100
+    	Count int64 `json:"count"`
+    	// example: 1000
+    	AllCount int64                        `json:"allCount"`
+    	Result   []database.ViewCandidateList `json:"result"`
+    }

@@ -1,0 +1,56 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "Сервис",
+    "title": "Сервис",
+    "contact": {
+      "name": "... ...",
+      "email": "liam@mail.kz"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    },
+    "version": "1.0.0"
+  },
+  "basePath": "/",
+  "paths": {},
+  "definitions": {
+    "http_response": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "x-go-name": "Message"
+        },
+        "result": {
+          "type": "object",
+          "x-go-name": "Result"
+        },
+        "status": {
+          "type": "boolean",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-name": "Response",
+      "x-go-package": "booking/models"
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}
